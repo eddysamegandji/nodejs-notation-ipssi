@@ -37,7 +37,7 @@ app.use((req, res, next) => {
 const userRoute = require('./api/routes/userRoute');
 userRoute(app);
 
-const modulelRoute = require('./api/routes/modulelRoute');
+const moduleRoute = require('./api/routes/moduleRoute');
 moduleRoute(app);
 
 
