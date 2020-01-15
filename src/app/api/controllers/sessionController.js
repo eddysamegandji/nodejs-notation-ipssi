@@ -59,4 +59,15 @@ exports.get_a_session = (req, res) => {
     })
   }
   
-
+  exports.delete_a_session = (req, res) => {
+    Post.remove({_id: req.params.session_id}, (error) => {
+      if(error){
+        res.status(500);
+        console.log(error);
+        res.json({message: "Erreur serveur."});
+      }
+      else {
+        res.status(200);
+        res.json({message: "Session supprimé"});
+      }
+    })
