@@ -1,4 +1,5 @@
 const user = require('../controllers/userController');
+const userHandlers = require('../controllers/userController.js');
 
 module.exports = (app) => {
     app.route('/auth/register')
@@ -8,5 +9,9 @@ module.exports = (app) => {
     .post(user.sign_in);
 
     app.route('/users')
-    .get(user.get_all);
+    .get(userHandlers.adminRequired, user.get_all);
+    
+    app.route('/users/:id')
+    .put(userHandlers.adminRequired, user.modify_user)
+    .delete(userHandlers.adminRequired, user.delete_user)
 }

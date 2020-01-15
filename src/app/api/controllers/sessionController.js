@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const sessionModel = require('../models/sessionModel')
 const Session = mongoose.model('Session');
 
-exports.list_all_sessions = (req, res) => {
-    Post.find({}, (error, sessions) => {
+exports.list_all_session = (req, res) => {
+  Session.find({}, (error, sessions) => {
       if(error){
         res.status(500);
         console.log(error);
@@ -32,7 +32,7 @@ exports.create_a_session = function(req,res){
 }
 
 exports.get_a_session = (req, res) => {
-    Post.findById(req.params.session_id, (error, session) => {
+  Session.findById(req.params.session_id, (error, session) => {
       if(error){
         res.status(500);
         console.log(error);
@@ -46,7 +46,7 @@ exports.get_a_session = (req, res) => {
   }
   
   exports.update_a_session = (req, res) => {
-    Post.findOneAndUpdate({_id: req.params.session_id}, req.body, {new: true}, (error, session) => {
+    Session.findOneAndUpdate({_id: req.params.session_id}, req.body, {new: true}, (error, session) => {
       if(error){
         res.status(500);
         console.log(error);
@@ -60,7 +60,7 @@ exports.get_a_session = (req, res) => {
   }
   
   exports.delete_a_session = (req, res) => {
-    Post.remove({_id: req.params.session_id}, (error) => {
+    Session.findByIdAndRemove(req.params.session_id, (error) => {
       if(error){
         res.status(500);
         console.log(error);
@@ -71,3 +71,4 @@ exports.get_a_session = (req, res) => {
         res.json({message: "Session supprimé"});
       }
     })
+  }
