@@ -6,4 +6,7 @@ module.exports = (app) => {
 
     app.route('/auth/sign_in')
     .post(user.sign_in);
+
+    app.route('/users')
+    .get(user.get_all);
 }
