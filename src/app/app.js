@@ -39,6 +39,8 @@ userRoute(app);
 
 const sessionRoute = require('./api/routes/sessionRoute');
 sessionRoute(app);
+const modulelRoute = require('./api/routes/modulelRoute');
+moduleRoute(app);
 
 
 app.listen(port, hostname);
