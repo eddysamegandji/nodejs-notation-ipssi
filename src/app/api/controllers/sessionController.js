@@ -46,7 +46,7 @@ exports.get_a_session = (req, res) => {
   }
   
   exports.update_a_session = (req, res) => {
-    Session.findOneAndUpdate({_id: req.params.session_id}, req.body, {new: true}, (error, session) => {
+    Session.findByIdAndUpdate(req.params.session_id, req.body, {new: true}, (error, session) => {
       if(error){
         res.status(500);
         console.log(error);
