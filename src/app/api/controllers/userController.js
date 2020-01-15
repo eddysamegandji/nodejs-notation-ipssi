@@ -32,7 +32,7 @@ exports.sign_in = (req, res) => {
           if (!user.comparePassword(req.body.password)) {
             res.status(401).json({ message: 'Auth failed' });
           } else {
-            return res.json({token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id}, 'nodejs_api')});
+            return res.json({token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id, role: user.role}, 'nodejs_api')});
           }
         }
       });
@@ -73,7 +73,7 @@ exports.get_all = (req, res) => {
 }
 
 exports.adminRequired = (req, res, next) => {
-    if (req.user && user.role == 0) {
+    if (req.user && req.user.role == 0) {
         next();
       } else {
         return res.status(401).json({ message: 'Utilisateur non autorisé' });
@@ -81,7 +81,7 @@ exports.adminRequired = (req, res, next) => {
 }
 
 exports.studentRequired = (req, res, next) => {
-    if (req.user && user.role == 2) {
+    if (req.user && req.user.role == 2) {
         next();
       } else {
         return res.status(401).json({ message: 'Utilisateur non autorisé' });
