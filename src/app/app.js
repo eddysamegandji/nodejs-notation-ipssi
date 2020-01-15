@@ -13,7 +13,7 @@ const mongooseParams = {
   useNewUrlParse: true,
   useCreateIndex: true
 }
-mongoose.connect('mongodb://mongo/sqynode', mongooseParams);
+mongoose.connect('mongodb://mongo/notation', mongooseParams);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
