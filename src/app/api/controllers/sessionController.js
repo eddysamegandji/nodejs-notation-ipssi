@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const userModel = require('../models/sessionModel')
-const User = mongoose.model('Session');
+const sessionModel = require('../models/sessionModel')
+const Session = mongoose.model('Session');
 
-exports.list_all_session = (req, res) => {
+exports.list_all_sessions = (req, res) => {
     Post.find({}, (error, sessions) => {
       if(error){
         res.status(500);
