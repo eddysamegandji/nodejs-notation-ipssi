@@ -33,7 +33,9 @@ app.use((req, res, next) => {
   }
 })
 
-//route
+//Routes
+const userRoute = require('./api/routes/userRoute');
+userRoute(app);
 
 
 app.listen(port, hostname);
