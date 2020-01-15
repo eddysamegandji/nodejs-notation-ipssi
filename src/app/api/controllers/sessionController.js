@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const userModel = require('../models/sessionModel')
+const sessionModel = require('../models/sessionModel')
 const Session = mongoose.model('Session');
 
 exports.list_all_session = (req, res) => {
