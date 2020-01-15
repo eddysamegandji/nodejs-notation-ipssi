@@ -3,6 +3,10 @@ const bcrypt = require('bcrypt');
 const {Schema} = mongoose;
 
 var UserSchema = new Schema({
+    role: {
+        type:integer ,
+        required:true,
+    },
     fullName: {
         type: String,
         required: true,
