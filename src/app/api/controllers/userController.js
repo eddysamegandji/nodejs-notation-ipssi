@@ -72,7 +72,7 @@ exports.get_all = (req, res) => {
     })
 }
 
-exports.adminRequired = function(req, res, next) {
+exports.adminRequired = (req, res, next) => {
     if (req.user && user.role == 0) {
         next();
       } else {
@@ -80,7 +80,7 @@ exports.adminRequired = function(req, res, next) {
       }
 }
 
-exports.studentRequired = function(req, res, next) {
+exports.studentRequired = (req, res, next) => {
     if (req.user && user.role == 2) {
         next();
       } else {
