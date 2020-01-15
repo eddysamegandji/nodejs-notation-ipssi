@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
-const User = require('./api/models/userModel');
+//const User = require('./api/models/userModel');
 const jsonwebtoken = require('jsonwebtoken');
 
 const hostname = "0.0.0.0";
@@ -32,6 +32,8 @@ app.use((req, res, next) => {
     next();
   }
 })
+
+//route
 
 
 app.listen(port, hostname);
