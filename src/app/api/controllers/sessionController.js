@@ -71,3 +71,4 @@ exports.get_a_session = (req, res) => {
         res.json({message: "Session supprimé"});
       }
     })
+  }
