@@ -50,21 +50,21 @@ exports.delete_user = (req, res) => {
 
 exports.modify_user = (req, res) => {
     req.body.hash_password = bcrypt.hashSync(req.body.password, 10);
-    User.findByIdAndUpdate(req.body.id, req.body, (err, res) => {
+    User.findByIdAndUpdate(req.body.id, req.body, (err, user) => {
         if (err) {
             res.status(500).json({message: "Erreur lors de la modification"});
         } else {
-            
+            res.status(200).json({success: true});
         }
     })
 }
 
 exports.get_all = (req, res) => {
-    User.find((err, res) => {
+    User.find((err, user) => {
         if (err) {
             res.status(500).json({message: "Erreur lors de la récupération des Users"});
         } else {
-            res.status(200).json(res);
+            res.status(200).json(user);
         }
     })
 }
