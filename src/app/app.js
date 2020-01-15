@@ -37,5 +37,8 @@ app.use((req, res, next) => {
 const userRoute = require('./api/routes/userRoute');
 userRoute(app);
 
+const modulelRoute = require('./api/routes/modulelRoute');
+moduleRoute(app);
+
 
 app.listen(port, hostname);
