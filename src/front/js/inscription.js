@@ -1,0 +1,26 @@
+$(document).ready(function(){
+    $('#inscription').validate({
+        rules:{
+            "fullName":{
+                "required":true,
+                "maxlength":255
+            },
+            "email":{
+                "required":true,
+                
+            },
+            "emailConfirm":{
+                "required":true,
+                equalTo:"#email"
+            },
+            "password":{
+                "required":true,
+                minlength:6
+            },
+            "password_confirmation":{
+                "required":true,
+                equalTo:"#hash_password"
+            }
+        }
+    })
+})
