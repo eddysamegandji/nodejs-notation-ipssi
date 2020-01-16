@@ -1,4 +1,10 @@
 $().ready(function() {
+  $('#inscrire').click((e)=>{
+    e.preventDefault();
+    console.log("toto");
+    window.location.href = "etudiantForm.html";
+  })
+   
     $("#form1").validate({
         rules : {
             mail : {
@@ -30,8 +36,19 @@ $().ready(function() {
       
       $.ajax(settings).done(function (response) {
         console.log(response);
+        document.cookie = "token="+ response.token; 
+        document.cookie = "role="+ response.role;
+
+        if(response.role == "0"){
+            window.location.href = "backOffice.html";
+        }else if(response.role == "2"){
+          window.location.href = "notation.html";
+        }else{
+          return "cet utilisateur n'existe pas";
+        }
       });
    })
 
-   
+    
+
   });
