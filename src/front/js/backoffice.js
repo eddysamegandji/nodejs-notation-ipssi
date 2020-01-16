@@ -1,5 +1,16 @@
 $( document ).ready(() => {
-    populateUsers();
+  
+  populateUsers();
+  populateModules();
+  populateSession();
+
+  $('#addUser').click(() => {
+    window.location.href = "adduser.html";
+  })
+
+  $('#addModule').click(() => {
+    window.location.href = "addmodule.html";
+  })
 })
 
 function populateUsers() {
@@ -23,7 +34,13 @@ function populateUsers() {
             tdMail.innerHTML = response[index].email;
 
             let tdRole = document.createElement('td');
-            tdRole.innerHTML = response[index].role;
+            if (response[index].role == 0) {
+              tdRole.innerHTML = "Admin"
+            } else if(response[index].role == 1) {
+              tdRole.innerHTML = "Intervenant"
+            } else {
+              tdRole.innerHTML = "Elève"
+            }
 
             let tdAction = document.createElement('td');
             let buttonUpdate = document.createElement('button');
@@ -41,6 +58,82 @@ function populateUsers() {
       });
 }
 
+function populateModules() {
+  var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://localhost:3000/module",
+      "method": "GET",
+      "headers": {
+        "Authorization": "JWT "+getCookie('token')
+      }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      for (let index = 0; index < response.length; index++) {
+          let tr = document.createElement('tr');
+          let tdName = document.createElement('td');
+          tdName.innerHTML = response[index].name;
+
+          let tdInter = document.createElement('td');
+          tdInter.innerHTML = response[index].id_intervenant;
+
+          let tdMoyenne = document.createElement('td');
+          tdMoyenne.innerHTML = calcMoyenne(response[index]._id);
+
+          let tdAction = document.createElement('td');
+          let buttonUpdate = document.createElement('button');
+          buttonUpdate.classList.add('btn', 'btn-primary', 'm-2');
+          buttonUpdate.innerHTML = "Modifier";
+          let buttonDelete = document.createElement('button');
+          buttonDelete.classList.add('btn', 'btn-danger', 'm-2');
+          buttonDelete.innerHTML = "Supprimer";
+          tdAction.append(buttonUpdate);
+          tdAction.append(buttonDelete);
+          
+          tr.append(tdName, tdInter, tdMoyenne, tdAction);
+          $('#table-module').append(tr);
+      }
+    });
+}
+
+function populateSession() {
+  var settings = {
+      "async": true,
+      "crossDomain": true,
+      "url": "http://localhost:3000/sessions",
+      "method": "GET",
+      "headers": {
+        "Authorization": "JWT "+getCookie('token')
+      }
+    }
+    
+    $.ajax(settings).done(function (response) {
+      for (let index = 0; index < response.length; index++) {
+          let tr = document.createElement('tr');
+          let tdName = document.createElement('td');
+          tdName.innerHTML = response[index].name;
+
+          let tdYear = document.createElement('td');
+          tdYear.innerHTML = response[index].year;
+
+
+          let tdAction = document.createElement('td');
+          let buttonUpdate = document.createElement('button');
+          buttonUpdate.classList.add('btn', 'btn-primary', 'm-2');
+          buttonUpdate.innerHTML = "Modifier";
+          let buttonDelete = document.createElement('button');
+          buttonDelete.classList.add('btn', 'btn-danger', 'm-2');
+          buttonDelete.innerHTML = "Supprimer";
+          tdAction.append(buttonUpdate);
+          tdAction.append(buttonDelete);
+          
+          tr.append(tdName, tdYear, tdAction);
+          $('#table-session').append(tr);
+      }
+    });
+}
+
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -55,4 +148,10 @@ function getCookie(cname) {
       }
     }
     return "";
+  }
+
+
+  function calcMoyenne(id) {
+    // TODO get all note for module id and calc mean
+    return Math.round(Math.random()*2*10)+"/20";
   }

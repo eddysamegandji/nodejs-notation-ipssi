@@ -72,6 +72,19 @@ exports.get_all = (req, res) => {
     })
 }
 
+exports.get_all_intervenant = (req, res) => {
+  User.find({role: 1}, (err, user) => {
+      if (err) {
+          res.status(500).json({message: "Erreur lors de la récupération des Users"});
+      } else {
+          for (let index = 0; index < user.length; index++) {
+              user[index].hash_password = undefined;
+          }
+          res.status(200).json(user);
+      }
+  })
+}
+
 exports.adminRequired = (req, res, next) => {
     if (req.user && req.user.role == 0) {
         next();
@@ -89,6 +102,7 @@ exports.studentRequired = (req, res, next) => {
 }
 
 exports.userRequired = (req, res, next) => {
+  console.log(req.user)
   if (req.user) {
       next();
     } else {
