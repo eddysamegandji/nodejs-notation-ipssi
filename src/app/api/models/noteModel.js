@@ -9,10 +9,6 @@ let noteSchema = new Schema({
     message: {
         type: String
     },
-    id_etudiant: {
-        type: String,
-        required: "ID étudiant requis"
-    },
     id_module: {
         type: String,
         required: "ID module requis"
