@@ -23,4 +23,25 @@ $(document).ready(function(){
             }
         }
     })
-})
+});
+
+$('#inscription').submit((e) =>{
+    e.preventDefault()
+    var $inputs = $('#inscription :input');
+    var values = {};
+    $inputs.each(function() {
+        values[this.name] = $(this).val();
+    });
+    values = JSON.stringify(values);
+    console.log(values);
+
+    var settings = {
+       "url": "http://localhost:3000/auth/register",
+       "method": "POST",
+       "data": values
+     };     
+      $.ajax(settings).done(function (response) {
+       console.log(response);
+       alert(response);
+     });
+  })
