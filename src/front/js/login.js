@@ -20,11 +20,11 @@ $().ready(function() {
    $('#form1').submit((e) =>{
      e.preventDefault()
      var settings = {
-        "url": "localhost:3000/auth/sign_in",
+        "url": "http://localhost:3000/auth/sign_in",
         "method": "POST",
         "data": {
-          "email": "$('#mail').val();",
-          "password": "$('#password').val();"
+          "email": $('#mail').val(),
+          "password": $('#password').val()
         }
       };
       
