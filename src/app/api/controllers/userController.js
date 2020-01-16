@@ -87,3 +87,11 @@ exports.studentRequired = (req, res, next) => {
         return res.status(401).json({ message: 'Utilisateur non autorisé' });
       }
 }
+
+exports.userRequired = (req, res, next) => {
+  if (req.user) {
+      next();
+    } else {
+      return res.status(401).json({ message: 'Utilisateur non autorisé' });
+    }
+}
