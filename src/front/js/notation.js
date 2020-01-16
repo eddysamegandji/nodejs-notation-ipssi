@@ -7,11 +7,15 @@ $( document ).ready(() => {
     }
 
     $('#note-container').hide();
+    $('#ajout-success').hide();
+    $('#ajout-fail').hide();
 
     $('#select-module').change((e) => {
         moduleSelected = $('#select-module').val();
         console.log(moduleSelected);
         $('#note-container').show();
+        $('#ajout-success').hide();
+        $('#ajout-fail').hide();
     })
 
 });
@@ -29,7 +33,8 @@ $('#note-form').submit((e) => {
     
     values = JSON.stringify(values);
     console.log(values);
-    //postNote()
+    postNote(values)
+    $('#note-form')[0].reset();
 })
 
 function populateSelectModule() {
@@ -56,4 +61,30 @@ function populateNoteModule(note) {
     option.innerHTML = note + "/20";
     option.setAttribute("value", note);
     $('#note').append(option);
+}
+
+function postNote(value) {
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:3000/note",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "processData": false,
+        "data": value
+      }
+      
+      $.ajax(settings).done((response) => {
+        if (response._id) {
+            $('#note-container').hide();
+            $('#ajout-success').show();
+        } else {
+            $('#ajout-fail').show();
+        }
+      }).fail((e) => {
+        $('#note-container').hide();
+        $('#ajout-fail').show();
+      });
 }
