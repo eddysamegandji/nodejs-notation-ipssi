@@ -32,7 +32,7 @@ exports.sign_in = (req, res) => {
           if (!user.comparePassword(req.body.password)) {
             res.status(401).json({ message: 'Auth failed' });
           } else {
-            return res.json({token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id, role: user.role}, 'nodejs_api')});
+            return res.json({token: jwt.sign({ email: user.email, fullName: user.fullName, _id: user._id, role: user.role}, 'nodejs_api'), role: user.role});
           }
         }
       });
