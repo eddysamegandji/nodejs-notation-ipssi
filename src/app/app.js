@@ -44,5 +44,7 @@ sessionRoute(app);
 const moduleRoute = require('./api/routes/moduleRoute');
 moduleRoute(app);
 
+const noteRoute = require('./api/routes/noteRoute');
+noteRoute(app);
 
 app.listen(port, hostname);
