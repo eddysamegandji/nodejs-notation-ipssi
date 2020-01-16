@@ -39,7 +39,7 @@ exports.sign_in = (req, res) => {
 }
 
 exports.delete_user = (req, res) => {
-    User.findByIdAndRemove(req.params.id, (err, res) => {
+    User.findByIdAndRemove(req.params.id, (err, user) => {
         if (err) {
             res.status(500).json({message: "Erreur lors de la supression"});
         } else {

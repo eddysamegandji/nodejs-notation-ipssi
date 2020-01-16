@@ -43,7 +43,7 @@ exports.get_a_module = (req, res) => {
     })
   }
   exports.update_a_module = (req, res) => {
-    Module.findByIdAndUpdate({name: req.params.module_id}, req.body, {new: true}, (error, modulee) => {
+    Module.findByIdAndUpdate(req.params.module_id, req.body, {new: true}, (error, modulee) => {
       if(error){
         res.status(500);
         console.log(error);
@@ -57,7 +57,7 @@ exports.get_a_module = (req, res) => {
   }
   
   exports.delete_a_module = (req, res) => {
-    Module.remove({name: req.params.module_id}, (error) => {
+    Module.findByIdAndRemove(req.params.module_id, (error) => {
       if(error){
         res.status(500);
         console.log(error);
@@ -65,7 +65,7 @@ exports.get_a_module = (req, res) => {
       }
       else {
         res.status(200);
-        res.json({message: "Module supprimé"});
+        res.json({success: true});
       }
     })
   }

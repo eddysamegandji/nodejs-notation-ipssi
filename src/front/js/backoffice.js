@@ -55,7 +55,6 @@ function populateUsers() {
       buttonDelete.classList.add("btn", "btn-danger", "m-2");
       buttonDelete.innerHTML = "Supprimer";
       buttonDelete.addEventListener('click', (e) => {
-        console.log('oto');
         deleteUser(response[index]._id)
       })
 
@@ -92,12 +91,18 @@ function populateModules() {
       tdMoyenne.innerHTML = calcMoyenne(response[index]._id);
 
       let tdAction = document.createElement("td");
+
       let buttonUpdate = document.createElement("button");
       buttonUpdate.classList.add("btn", "btn-primary", "m-2");
       buttonUpdate.innerHTML = "Modifier";
+
       let buttonDelete = document.createElement("button");
       buttonDelete.classList.add("btn", "btn-danger", "m-2");
       buttonDelete.innerHTML = "Supprimer";
+      buttonDelete.addEventListener('click', (e) => {
+        deleteModule(response[index]._id)
+      })
+
       tdAction.append(buttonUpdate);
       tdAction.append(buttonDelete);
 
@@ -128,12 +133,18 @@ function populateSession() {
       tdYear.innerHTML = response[index].year;
 
       let tdAction = document.createElement("td");
+
       let buttonUpdate = document.createElement("button");
       buttonUpdate.classList.add("btn", "btn-primary", "m-2");
       buttonUpdate.innerHTML = "Modifier";
+
       let buttonDelete = document.createElement("button");
       buttonDelete.classList.add("btn", "btn-danger", "m-2");
       buttonDelete.innerHTML = "Supprimer";
+      buttonDelete.addEventListener('click', (e) => {
+        deleteSession(response[index]._id)
+      })
+
       tdAction.append(buttonUpdate);
       tdAction.append(buttonDelete);
 
@@ -176,6 +187,44 @@ function deleteUser(id) {
   }
   
   $.ajax(settings).done(function (response) {
-    console.log(response);
+    if (response.success) {
+      window.location.reload();
+    }
+  });
+}
+
+function deleteModule(id) {
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost:3000/module/"+id,
+    "method": "DELETE",
+    "headers": {
+      "Authorization": "JWT "+getCookie('token')
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    if (response.success) {
+      window.location.reload();
+    }
+  });
+}
+
+function deleteSession(id) {
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://localhost:3000/sessions/"+id,
+    "method": "DELETE",
+    "headers": {
+      "Authorization": "JWT "+getCookie('token')
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    if (response.success) {
+      window.location.reload();
+    }
   });
 }
