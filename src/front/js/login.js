@@ -3,7 +3,7 @@ $().ready(function() {
     e.preventDefault();
     console.log("toto");
     window.location.href = "etudiantForm.html";
-  })
+  });
    
     $("#form1").validate({
         rules : {
