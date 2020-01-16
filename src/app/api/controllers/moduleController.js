@@ -30,7 +30,7 @@ exports.list_all_modules = (req, res) => {
   }
 
 exports.get_a_module = (req, res) => {
-    Module.findOne(req.params.module_name, (error, modulee) => {
+    Module.findById(req.params.module_id, (error, modulee) => {
       if(error){
         res.status(500);
         console.log(error);
@@ -43,7 +43,7 @@ exports.get_a_module = (req, res) => {
     })
   }
   exports.update_a_module = (req, res) => {
-    Module.findOneAndUpdate({name: req.params.module_name}, req.body, {new: true}, (error, modulee) => {
+    Module.findByIdAndUpdate({name: req.params.module_id}, req.body, {new: true}, (error, modulee) => {
       if(error){
         res.status(500);
         console.log(error);
@@ -57,7 +57,7 @@ exports.get_a_module = (req, res) => {
   }
   
   exports.delete_a_module = (req, res) => {
-    Module.remove({name: req.params.module_name}, (error) => {
+    Module.remove({name: req.params.module_id}, (error) => {
       if(error){
         res.status(500);
         console.log(error);
