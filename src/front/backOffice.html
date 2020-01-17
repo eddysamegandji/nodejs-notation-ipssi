@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Notation du module</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light">
+        <h1 class="navbar-brand"">Backoffice</h1>
+        <button class="btn btn-danger" id="disconnect">Déconnexion</button>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="h4">Users</h2>
+        <button class="btn btn-primary mb-2" id="addUser">+ Ajouter un utilisateur</button>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Role</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="table-user">
+              
+            </tbody>
+          </table>
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="h4">Modules</h2>
+        <button class="btn btn-primary mb-2" id="addModule">+ Ajouter un module</button>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Intervenant</th>
+                <th scope="col">Moyenne</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="table-module">
+              
+            </tbody>
+          </table>
+    </div>
+
+    <div class="container mt-5">
+        <h2 class="h4">Sessions</h2>
+        <button class="btn btn-primary mb-2" id="addSession">+ Ajouter une session</button>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Année</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="table-session">
+              
+            </tbody>
+          </table>
+    </div>
+      
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- Optional JavaScript -->
+    <script src="./js/backoffice.js"></script>
+    <script src="./js/controlUser.js"></script>
+</body>

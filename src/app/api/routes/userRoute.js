@@ -9,7 +9,10 @@ module.exports = (app) => {
     .post(user.sign_in);
 
     app.route('/users')
-    .get(userHandlers.adminRequired, user.get_all);
+    .get(user.get_all);
+
+    app.route('/intervenant')
+    .get(userHandlers.adminRequired, user.get_all_intervenant);
     
     app.route('/users/:id')
     .put(userHandlers.adminRequired, user.modify_user)

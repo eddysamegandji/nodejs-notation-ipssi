@@ -68,7 +68,7 @@ exports.get_a_session = (req, res) => {
       }
       else {
         res.status(200);
-        res.json({message: "Session supprimé"});
+        res.json({success: true});
       }
     })
   }

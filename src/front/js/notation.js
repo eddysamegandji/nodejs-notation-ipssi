@@ -1,5 +1,10 @@
 var moduleSelected;
 $( document ).ready(() => {
+    controlUser();
+    $('#disconnect').click(() => {
+        disconnect();
+        controlUser();
+    })
     
     populateSelectModule();
     for (let index = 1; index <= 20; index++) {
@@ -43,6 +48,9 @@ function populateSelectModule() {
         "async": true,
         "crossDomain": true,
         "url": "http://localhost:3000/module",
+        "headers": {
+            "Authorization" : "JWT " + getCookie('token')
+        },
         "method": "GET",
       }
       
@@ -87,4 +95,30 @@ function postNote(value) {
         $('#note-container').hide();
         $('#ajout-fail').show();
       });
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function controlUser() {
+    if(getCookie('token') == "") {
+        window.location.href = "login.html";
+    }
+}
+
+function disconnect() {
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
