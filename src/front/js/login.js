@@ -16,7 +16,7 @@ $().ready(function() {
             }
         },
           messages : {
-            "mail" : "Veuillez fournir un email correcte",
+            "mail" : "Veuillez fournir un email correct",
             "password" : "Veuillez entrer votre mot de passe"
             
           }
@@ -43,11 +43,11 @@ $().ready(function() {
             window.location.href = "backOffice.html";
         }else if(response.role == "2"){
           window.location.href = "notation.html";
-        }else{
-          return "cet utilisateur n'existe pas";
         }
+      }).fail(function (){
+        document.getElementById("span").innerHTML ="e-mail ou mot de passe erroné!";
       });
-   })
+   });
 
     
 
