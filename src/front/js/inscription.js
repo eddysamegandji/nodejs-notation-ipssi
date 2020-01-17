@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('#inscription').validate({
         rules:{
-            "fullName":{
+            fullName:{
                 "required":true,
                 "maxlength":255
             },
@@ -20,6 +20,23 @@ $(document).ready(function(){
             "password_confirmation":{
                 "required":true,
                 equalTo:"#hash_password"
+            },
+        
+        },
+        messages : {
+            "fullName" : {
+                "required":"Veillez renseigner un nom",
+                "maxlength":"255 caractères maximum"
+            },
+            "email":"Veillez renseigner une adresse mail",
+            "emailConfirm":"Veillez renseigner une adresse mail",
+            "password":{
+                "required":"Veillez renseigner un mot de passe",
+                "minlength":"6 caractères minimum"
+            },
+            "password_confirmation":{
+                "required":"Veillez renseigner un mot de passe",
+                "minlength":"6 caractères minimum"
             }
         }
     })
